@@ -113,9 +113,7 @@ php artisan serve
 <h3>
 Unit tests:
 </h3>
-```shell
-php artisan test
-```
+`php artisan test`
 
 ## License
 
