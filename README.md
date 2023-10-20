@@ -48,7 +48,7 @@ Description: This endpoint allows you to list all support tickets available in t
 
 <h3>Validation Resources</h3>
 <p>
-Helpdesk has validation features to ensure that the data provided when creating or updating a ticket is correct and meets established criteria, such as required fields, valid formats, and acceptable values. 
+Helpdesk has validation features to ensure that the data provided when creating or updating a ticket is correct and meets established criteria, such as required fields, valid formats, and acceptable values. Unit tests were implemented.
 </p>
 
 <p>
@@ -56,9 +56,66 @@ Creating a ticket with the "user_requester_id" and "user_assigned_id" fields oft
 </p>
 
 <p>
-    Documentation of endpoints in a visual format was also implemented. To view these resources described above, access the /api/documentation route.
+    Documentation of endpoints in a visual format was also implemented. To view these resources described above, access the <strong>/api/documentation</strong> route.
 </p>
 
+<h2>Setup</h3>
+
+<h3>Step 1:</h3>
+<p>
+Laravel 9
+Composer
+PostgreSQL
+</p>
+
+<h3>
+Step 2: Clone the project  
+</h3>
+
+<h3>
+Step 3: Install dependencies
+</h3>
+<p>
+composer install
+</p>
+
+<h3>
+Step 4: Configure the database
+</h3>
+<p>
+Create a database
+Create a.env file
+
+Add to file:
+
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=your-database
+DB_USERNAME=your-username
+DB_PASSWORD=your-password
+</p>
+
+<h3>
+Step 5: Run the migrations
+</h3>
+```shell
+php artisan migrate
+```
+
+<h3>
+Step 6: Start the server
+</h3>
+```shell
+php artisan serve
+```
+
+<h3>
+Unit tests:
+</h3>
+```shell
+php artisan test
+```
 
 ## License
 
