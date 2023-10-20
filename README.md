@@ -10,6 +10,9 @@
 <h2>
     Basic Description of the Helpdesk Microservice
 </h2>
+<p>
+The Helpdesk microservice is an essential component of the system that manages support interfaces, both for users and internal teams. It offers features to create, view, update and delete support tickets, ensuring that issues and features are handled in an organized and efficient manner.
+</p>
 
 <h2>Key Features</h2>
 
