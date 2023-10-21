@@ -1,5 +1,8 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://logovtor.com/wp-content/uploads/2020/09/swagger-supported-by-smartbear-logo-vector.png" width="200"></a></p>
+
+
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
@@ -59,29 +62,27 @@ Creating a ticket with the "user_requester_id" and "user_assigned_id" fields oft
     Documentation of endpoints in a visual format was also implemented. To view these resources described above, access the <strong>/api/documentation</strong> route.
 </p>
 
-<h2>Setup</h3>
+<h3>Setup</h3>
 
-<h3>Step 1: Requirements</h3>
-```ini
-Laravel 9 
-Composer 
-PostgreSQL 
-```
+<h2>Step 1: Requirements</h2>
+<p>Laravel 9</p>
+<p>Composer</p>
+<p>PostgreSQL</p>
 
-<h3>
+<h2>
 Step 2: Clone the project  
-</h3>
+</h2>
 
-<h3>
+<h2>
 Step 3: Install dependencies
-</h3>
+</h2>
 <p>
 composer install
 </p>
 
-<h3>
+<h2>
 Step 4: Configure the database
-</h3>
+</h2>
 <p>Create a database</p>
 <p>Create a .env file</p>
 <p>Add to .env file:</p>
@@ -95,23 +96,23 @@ DB_USERNAME=your-username \n
 DB_PASSWORD=your-password \n
 ```
 
-<h3>
+<h2>
 Step 5: Run the migrations
-</h3>
+</h2>
 ```ini
 php artisan migrate
 ```
 
-<h3>
+<h2>
 Step 6: Start the server
-</h3>
+</h2>
 ```ini
 php artisan serve
 ```
 
-<h3>
+<h2>
 Unit tests:
-</h3>
+</h2>
 ```ini
 php artisan test
 ```
