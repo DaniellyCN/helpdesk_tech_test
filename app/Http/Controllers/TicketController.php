@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\UuidValidationException;
 use App\Models\Ticket;
 use App\Services\TicketValidationService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 
 /**
@@ -60,8 +62,8 @@ class TicketController extends Controller
      *     tags={"Tickets"},
      *     @OA\RequestBody(
      *         @OA\JsonContent(
-     *             @OA\Property(property="user_requester_id", type="integer"),
-     *             @OA\Property(property="user_assigned_id", type="integer"),
+     *             @OA\Property(property="user_requester_id", type="string"),
+     *             @OA\Property(property="user_assigned_id", type="string"),
      *             @OA\Property(property="category", type="string"),
      *             @OA\Property(property="description", type="string"),
      *             @OA\Property(property="priority", type="string", enum={"low", "medium", "high"})
@@ -87,8 +89,16 @@ class TicketController extends Controller
     public function store(Request $request): JsonResponse
     {
 
+        if (!Str::isUuid($request->user_requester_id) || ($request->user_assigned_id && !Str::isUuid($request->user_assigned_id))) {
+            return response()->json([
+                'status' => 422,
+                'message' => 'Invalid UUID format for user_requester_id or user_assigned_id'
+            ], 422);
+        }
+
         $validator = Validator::make($request->all(), [
-            'user_requester_id' => 'required',
+            'user_requester_id' => 'required|exists:users,id|string',
+            'user_assigned_id' => 'exists:users,id',
             'category' => 'required',
             'description' => 'required',
             'priority' => ['required', 'in:low,medium,high'],
@@ -104,7 +114,7 @@ class TicketController extends Controller
         }
 
 
-        $user = Ticket::create([
+        $ticket = Ticket::create([
             'user_requester_id' => $request->user_requester_id,
             'user_assigned_id' => $request->user_assigned_id,
             'category' => $request->category,
@@ -114,7 +124,7 @@ class TicketController extends Controller
             'update_at' => now()
         ]);
 
-        if(!$user) {
+        if(!$ticket) {
             return response()->json([
                 'status' => 500,
                 'message' => 'Something went wrong'
@@ -123,7 +133,7 @@ class TicketController extends Controller
 
         return response()->json([
             'status' => 201,
-            'message' => 'Ticket created successfully'
+            'ticket' => $ticket
         ], 201);
     }
 
@@ -138,7 +148,7 @@ class TicketController extends Controller
      *         description="Ticket ID",
      *         required=true,
      *         @OA\Schema(
-     *             type="integer"
+     *             type="string"
      *         )
      *     ),
      *     @OA\Response(
@@ -189,9 +199,9 @@ class TicketController extends Controller
      *         description="Ticket data to update",
      *         required=true,
      *         @OA\JsonContent(
-     *             @OA\Property(property="id", type="integer", description="Ticket ID"),
-     *             @OA\Property(property="user_requester_id", type="integer", description="Requester User ID"),
-     *             @OA\Property(property="user_assigned_id", type="integer", description="Assigned User ID"),
+     *             @OA\Property(property="id", type="string", description="Ticket ID"),
+     *             @OA\Property(property="user_requester_id", type="string", description="Requester user ID"),
+     *             @OA\Property(property="user_assigned_id", type="string", description="Assigned user ID"),
      *             @OA\Property(property="category", type="string", description="Category"),
      *             @OA\Property(property="description", type="string", description="Description"),
      *             @OA\Property(property="status", type="string", description="Status", enum={"open", "in progress", "resolved"}),
@@ -226,6 +236,15 @@ class TicketController extends Controller
      */
     public function update(Request $request, TicketValidationService $validationService): JsonResponse
     {
+        if (!Str::isUuid($request->user_requester_id) ||
+            ($request->user_assigned_id && !Str::isUuid($request->user_assigned_id))
+            || (!Str::isUuid($request->id))) {
+            return response()->json([
+                'status' => 422,
+                'message' => 'Invalid UUID format for user_requester_id, user_assigned_id or ticket id'
+            ], 422);
+        }
+
         $ticket = Ticket::find($request->id);
 
         if(!$ticket) {
@@ -243,8 +262,9 @@ class TicketController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'user_requester_id' => 'required|exists:users,id',
-            'user_assigned_id' => 'required|exists:users,id',
+            'id' => 'required',
+            'user_requester_id' => 'required|exists:users,id|string',
+            'user_assigned_id' => 'required|exists:users,id|string',
             'category' => 'required',
             'description' => 'required',
             'status' => ['required', 'in:open,in progress,resolved'],
@@ -271,7 +291,7 @@ class TicketController extends Controller
 
         return response()->json([
             'status' => 201,
-            'message' => 'Ticket updated successfully'
+            'ticket' => $ticket
         ], 201);
     }
 
@@ -286,7 +306,7 @@ class TicketController extends Controller
      *         description="Ticket ID",
      *         required=true,
      *         @OA\Schema(
-     *             type="integer"
+     *             type="string"
      *         )
      *     ),
      *     @OA\Response(

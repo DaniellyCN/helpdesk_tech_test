@@ -25,7 +25,7 @@ class CustomException extends ExceptionHandler
     {
         return response()->json([
             'message' => 'Internal error',
-            'error' => $e->getMessage(),
+            'status' => 500
         ], 500);
     }
 
@@ -33,7 +33,7 @@ class CustomException extends ExceptionHandler
     {
         return response()->json([
             'message' => 'Database error',
-            'error' => $e->getMessage(),
+            'status' => 500
         ], 500);
     }
 }

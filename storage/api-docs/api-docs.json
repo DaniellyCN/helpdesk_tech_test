@@ -37,15 +37,15 @@
                                 "properties": {
                                     "id": {
                                         "description": "Ticket ID",
-                                        "type": "integer"
+                                        "type": "string"
                                     },
                                     "user_requester_id": {
-                                        "description": "Requester User ID",
-                                        "type": "integer"
+                                        "description": "Requester user ID",
+                                        "type": "string"
                                     },
                                     "user_assigned_id": {
-                                        "description": "Assigned User ID",
-                                        "type": "integer"
+                                        "description": "Assigned user ID",
+                                        "type": "string"
                                     },
                                     "category": {
                                         "description": "Category",
@@ -135,10 +135,10 @@
                             "schema": {
                                 "properties": {
                                     "user_requester_id": {
-                                        "type": "integer"
+                                        "type": "string"
                                     },
                                     "user_assigned_id": {
-                                        "type": "integer"
+                                        "type": "string"
                                     },
                                     "category": {
                                         "type": "string"
@@ -199,7 +199,7 @@
                         "description": "Ticket ID",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string"
                         }
                     }
                 ],
@@ -257,7 +257,7 @@
                         "description": "Ticket ID",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string"
                         }
                     }
                 ],
