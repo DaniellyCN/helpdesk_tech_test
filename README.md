@@ -62,13 +62,11 @@ Creating a ticket with the "user_requester_id" and "user_assigned_id" fields oft
 <h2>Setup</h3>
 
 <h3>Step 1: Requirements</h3>
-<p>
 ```ini
 Laravel 9 
 Composer 
 PostgreSQL 
 ```
-</p>
 
 <h3>
 Step 2: Clone the project  
@@ -85,8 +83,8 @@ composer install
 Step 4: Configure the database
 </h3>
 <p>Create a database</p>
-<p>Create a.env file</p>
-<p>Add to file:</p>
+<p>Create a .env file</p>
+<p>Add to .env file:</p>
 
 ```ini
 DB_CONNECTION=pgsql \n
@@ -100,17 +98,23 @@ DB_PASSWORD=your-password \n
 <h3>
 Step 5: Run the migrations
 </h3>
-<p>php artisan migrate</p>
+```ini
+php artisan migrate
+```
 
 <h3>
 Step 6: Start the server
 </h3>
-<p>php artisan serve</p>
+```ini
+php artisan serve
+```
 
 <h3>
 Unit tests:
 </h3>
-<p>php artisan test</p>
+```ini
+php artisan test
+```
 
 ## License
 
