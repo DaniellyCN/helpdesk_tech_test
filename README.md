@@ -1,6 +1,6 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://logovtor.com/wp-content/uploads/2020/09/swagger-supported-by-smartbear-logo-vector.png" width="200"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://logovtor.com/wp-content/uploads/2020/09/swagger-supported-by-smartbear-logo-vector.png" width="400"></a></p>
 
 
 <p align="center">
@@ -99,23 +99,20 @@ DB_PASSWORD=your-password \n
 <h2>
 Step 5: Run the migrations
 </h2>
-```ini
-php artisan migrate
-```
+<p>php artisan migrate</p>
+
 
 <h2>
 Step 6: Start the server
 </h2>
-```ini
-php artisan serve
-```
+<p>php artisan serve</p>
+
 
 <h2>
 Unit tests:
 </h2>
-```ini
-php artisan test
-```
+<p>php artisan test</p>
+
 
 ## License
 
